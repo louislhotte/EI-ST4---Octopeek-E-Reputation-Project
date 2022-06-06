@@ -5,10 +5,10 @@ import tweepy
 import matplotlib.pyplot as plt
 
 # Authentication Keys
-consumerKey = ""
-consumerSecret = ""
-accessToken = ""
-accessTokenSecret = ""
+consumerKey = "oS0y8zwwELCAkpNIfBY3srKkR"
+consumerSecret = "mqv3sFi3r04a8p5IQcxy5rbX5AVfLOTcvmWgpLv8I0VYflAMrv"
+accessToken = "1532642498644004865-x3B8w6xfdpG0rG7lvmwkUkOPqpX20t"
+accessTokenSecret = "CklJdk3efQKlk1wAmacmNZ4jzPdk54V34Nj0EPLkramaw"
 
 auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
 auth.set_access_token(accessToken, accessTokenSecret)
