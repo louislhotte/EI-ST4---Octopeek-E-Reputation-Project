@@ -21,7 +21,7 @@ def percentage(part, whole):
      return 100 * float(part) / float(whole)
 
 
-keyword = input("Please enter keyword or hashtag to search: ")
+keyword = Elon Musk
 noOfTweet = int(input("Please enter how many tweets to analyze: "))
 
 tweets = tweepy.Cursor(api.search, q=keyword).items(noOfTweet)
