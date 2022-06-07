@@ -3,12 +3,13 @@ from textblob import TextBlob
 import sys
 import tweepy
 import matplotlib.pyplot as plt
+import time
 
 # Authentication Keys
-consumerKey = "oS0y8zwwELCAkpNIfBY3srKkR"
-consumerSecret = "mqv3sFi3r04a8p5IQcxy5rbX5AVfLOTcvmWgpLv8I0VYflAMrv"
-accessToken = "1532642498644004865-x3B8w6xfdpG0rG7lvmwkUkOPqpX20t"
-accessTokenSecret = "CklJdk3efQKlk1wAmacmNZ4jzPdk54V34Nj0EPLkramaw"
+consumerKey = "rP1N2eAUuLP3zmGkTj166zwgs"
+consumerSecret = "050RMsIfrigsRaI1Od454ScbQAGxAvWGRcgBGOrP50uFkiuxvc"
+accessToken = "1457688577790337029-UNccZXBzmiwXIqHqguknLvxMivu1zB"
+accessTokenSecret = "WShy6U4B1vU5JyooAnxcbLGzfzVhRvOwvzjolOPTywKDG"
 
 auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
 auth.set_access_token(accessToken, accessTokenSecret)
@@ -24,7 +25,7 @@ def percentage(part, whole):
 keyword = "Elon Musk"
 noOfTweet = int(input("Please enter how many tweets to analyze: "))
 
-tweets = tweepy.Cursor(api.search, q=keyword).items(noOfTweet)
+tweets = tweepy.Cursor(api.search_tweets, q=keyword).items(noOfTweet)
 
 positive = 0
 negative = 0
