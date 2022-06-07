@@ -7,7 +7,7 @@ Nous avons choisi la personnalité 'Elon Musk', car sa controversité en fait de
 Guide pour faire marcher le fichier 'main.py':
 
     - # Install Libraris
-            # !pip install textblob
-            # !pip install tweepy
+            # pip install textblob
+            # pip install tweepy
     - # API
     
