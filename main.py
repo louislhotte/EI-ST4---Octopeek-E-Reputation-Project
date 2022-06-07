@@ -13,7 +13,7 @@ accessTokenSecret = "WShy6U4B1vU5JyooAnxcbLGzfzVhRvOwvzjolOPTywKDG"
 
 auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
 auth.set_access_token(accessToken, accessTokenSecret)
-api = tweepy.API(auth)
+api = tweepy.API(auth,wait_on_rate_limit=True)
 
 
 # Sentiment Analysis
@@ -68,7 +68,7 @@ colors = ['yellowgreen', 'gold','red']
 patches, texts = plt.pie(sizes,colors=colors, startangle=90)
 plt.style.use('default')
 plt.legend(patches, labels, loc='best')
-plt.title("Sentiment Analysis Result for keyword=  "+keyword+"" )
+plt.title("Sentiment Analysis Result for keyword = "+keyword+" and "+str(noOfTweet)+" tweets" )
 plt.axis('equal')
 plt.show()
 
