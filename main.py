@@ -14,13 +14,8 @@ accessTokenSecret = "WShy6U4B1vU5JyooAnxcbLGzfzVhRvOwvzjolOPTywKDG"
 
 auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
 auth.set_access_token(accessToken, accessTokenSecret)
-<<<<<<< HEAD
 api = tweepy.API(auth,wait_on_rate_limit=True)
-
-=======
-api = tweepy.API(auth)
-username = "CeveraRomain"
->>>>>>> 6557283da55e3b1e9f308b8befa2ef35c6dec106
+username = "CerveraRomain"
 
 # Sentiment Analysis
 
@@ -34,7 +29,6 @@ noOfTweet = int(input("Please enter how many tweets to analyze: "))
 # end_date = datetime.datetime(2022, 3, 6, 12, 00, 00)
 
 tweets = tweepy.Cursor(api.search_tweets, q=keyword, lang="en").items(noOfTweet)
-
 
 
 
@@ -79,11 +73,7 @@ colors = ['yellowgreen', 'gold','red']
 patches, texts = plt.pie(sizes,colors=colors, startangle=90)
 plt.style.use('default')
 plt.legend(patches, labels, loc='best')
-<<<<<<< HEAD
 plt.title("Sentiment Analysis Result for keyword = "+keyword+" and "+str(noOfTweet)+" tweets" )
-=======
-plt.title("Sentiment Analysis Result About "+keyword+"" )
->>>>>>> 6557283da55e3b1e9f308b8befa2ef35c6dec106
 plt.axis('equal')
 plt.show()
 
