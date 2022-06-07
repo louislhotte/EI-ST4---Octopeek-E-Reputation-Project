@@ -30,14 +30,14 @@ noOfTweet = int(input("Please enter how many tweets to analyze: "))
 
 tweets = tweepy.Cursor(api.search_tweets, q=keyword, lang="en").items(noOfTweet)
 
-
-
+k = 0
 positive = 0
 negative = 0
 neutral = 0
 polarity = 0
 
 for tweet in tweets:
+     k = k + 1
      # print(tweet.text)
      analysis = TextBlob(tweet.text)
      polarity += analysis.sentiment.polarity
@@ -54,10 +54,10 @@ for tweet in tweets:
           positive += 1
           # print(analysis)
 
-positive = percentage(positive, noOfTweet)
-negative = percentage(negative, noOfTweet)
-neutral = percentage(neutral, noOfTweet)
-polarity = percentage(polarity, noOfTweet)
+positive = percentage(positive, k)
+negative = percentage(negative, k)
+neutral = percentage(neutral, k)
+polarity = percentage(polarity, k)
 
 positive = format(positive, '.1f')
 negative = format(negative, '.1f')
@@ -73,7 +73,8 @@ colors = ['yellowgreen', 'gold','red']
 patches, texts = plt.pie(sizes,colors=colors, startangle=90)
 plt.style.use('default')
 plt.legend(patches, labels, loc='best')
-plt.title("Sentiment Analysis Result for keyword = "+keyword+" and "+str(noOfTweet)+" tweets" )
+plt.title("Sentiment Analysis Result for keyword = "+keyword+" and "+str(k)+" tweets" )
 plt.axis('equal')
+# plt.savefig(str(k)+' tweets.png',dpi = 600)
 plt.show()
 
