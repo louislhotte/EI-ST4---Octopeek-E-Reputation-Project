@@ -108,7 +108,7 @@ def vect_sim(dic_score, dic, new_user):
           user_sim_dic[user] = calcul_sim(dic, new_user, user)
      return user_sim_dic
 
-def score_prediction(dic_score, new_user, new_sim_dic):
+def score_prediction(dic_score, new_sim_dic):
      score = 0;
      denominateur = 0
      
