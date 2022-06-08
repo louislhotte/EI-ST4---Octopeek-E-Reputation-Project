@@ -5,10 +5,6 @@ from math import sqrt
 
 
 Path = 'datapart14.csv'
-Unknown = []
-Positive = []
-Negative = []
-Neutral = []
 
 
 def create_dic(Path):
