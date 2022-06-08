@@ -4,7 +4,7 @@ import pandas as pd
 from math import sqrt
 
 
-Path = []  # Liste des paths
+Path = 'datapart14.csv'
 Unknown = []
 Positive = []
 Negative = []
@@ -13,16 +13,26 @@ Neutral = []
 
 def create_dic(Path):
     """
-    :param dataset:     CSV avec pseudos, scores et abonnements (Normalement, 2 CSV différent?)
+    :param dataset:     CSV
     :return:            dic_score : {Pseudo : "Score"}
                         dic = {Abonnement : "Pseudo"}
     """
-    with open('eggs.csv', newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-        for row in spamreader:
-            Unknown.append(row)
-
     Pseudos = []
+    with open(Path, newline='') as csvfile:
+        read = csv.reader(csvfile)
+        for row in read:
+            if row != []:
+                pseudo = row[0]
+                list = row[1][1:].split(', ')
+                n = len(list)
+                for i in range(len(list) - 1):
+                    list[i] = int(list[i])
+                last_follower = int(list[n - 1].split(']')[0])
+                score = list[0]
+                followers = list[1:n - 2]
+                followers.append(last_follower)
+                Pseudos.append([pseudo, score, followers])
+
     # On va créer une liste de liste Pseudos, avec en Pseudo[i][0] = Pseudo et Pseudo[i][1] = 0, -1, 1
     # en fonction de sa positivité
     # Et Pseudo[i][2] va correspondre à la liste de ses abonnements
