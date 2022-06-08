@@ -51,40 +51,22 @@ def create_dic(Path):
                 dic[x].append(Pseudos[i][0])
 
 
-def loop(follow, Unkwown, Label):
-    """
-    :Input: Matrice utilisateurs/abonnements remplie actuellement appelée "follow", Liste Unknown, Matrice Label des pseudos labellisés "pour",
-    "contre", ou "neutre" à propos d'Elon.
-    :return: Matrice follow agrandie (avec les fortements positif, fortements neutre,
-    fortement négatif rentrant dans la matrice), liste Unknown modifiée avec les pseudos qui sont
-    entrés dans la matrice follow : ils sont supprimés de Unknown
-    """
+def test_score_user(score):
+     if score < -0.6:
+          return -1
+     elif score > 0.6:
+          return 1
+     elif score > -0.1 and score < 0.1:
+          return 0
+     else:
+          return None
 
-    return
+def add_user(dic_score, dic, new_user, new_user_following, score):
+     dic_score[new_user] = score
+     for following in new_user_following:
+          dic[following].append(new_user)
 
-
-def main(Unknown, dataset):
-    """
-    :param: dataset (Dataset avec les pseudos des individus labellisés "Pro-ElonMusk" et "Anti-ElonMusk")
-    Unknown (la liste des pseudos non 'classés')
-    :return: Dictionnaire ou matrice qui à chaque pseudo associe son statut 'Positif', 'Neutre' ou 'Négatif'
-    """
-    Compteur = 0
-
-    while len(Unknown) > 0:
-        follow = loop(Unknown)
-        Compteur += 1
-
-        # Si l'ordi n'arrive
-        if Compteur > 100:
-            break
-
-    # Puis une fois qu'on a la matrice follow finale, il faut créer la matrice de similarité
-
-    return
-
-
-def calcul_sim(dic, new_user, new_user_following, user):
+def calcul_sim(dic, new_user_following, user):
      new_user_number = 0
      user_number = 0
 
@@ -103,16 +85,16 @@ def calcul_sim(dic, new_user, new_user_following, user):
      return sim/(sqrt(new_user_number)*sqrt(user_number))
 
 
-def vect_sim(dic_score, dic, new_user):
+def vect_sim(dic_score, dic, new_user_following):
      user_sim_dic = dict()
      for user in dic_score:
-          user_sim_dic[user] = calcul_sim(dic, new_user, user)
+          user_sim_dic[user] = calcul_sim(dic, new_user_following, user)
      return user_sim_dic
 
-def score_prediction(dic_score, new_user, new_sim_dic):
+def score_prediction(dic_score, new_sim_dic):
      score = 0;
      denominateur = 0
-     
+
      for user in dic_score:
           score += dic_score[user]*new_sim_dic[user]
           denominateur += abs(new_sim_dic[user])
