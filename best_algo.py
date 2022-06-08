@@ -74,25 +74,39 @@ def main(Unknown, dataset):
     return
 
 
-def calcul_sim(dic, user_1, user_2):
-    user_1_number = 0
-    user_2_number = 0
+def calcul_sim(dic, new_user, new_user_following, user):
+     new_user_number = 0
+     user_number = 0
 
-    sim = 0
+     sim = 0
 
-    for items in dic.items():
-        is_in_1 = user_1 in items[1]
-        is_in_2 = user_2 in items[1]
-        if is_in_1:
-            user_1_number += 1
-        if is_in_2:
-            user_2_number += 1
+     for following in new_user_following:
+          new_user_number += 1
+          if user in dic[following]:
+               sim += 1
 
-        if is_in_1 and is_in_2:
-            sim += 1
+     
+     for items in dic.items():
+          if user in items[1]:
+               user_number += 1
 
-    return sim/(sqrt(user_1_number)*sqrt(user_2_number))
+     return sim/(sqrt(new_user_number)*sqrt(user_number))
 
 
-def vect_sim(dic_score, dic, user):
-    pass
+def vect_sim(dic_score, dic, new_user):
+     user_sim_dic = dict()
+     for user in dic_score:
+          user_sim_dic[user] = calcul_sim(dic, new_user, user)
+     return user_sim_dic
+
+def score_prediction(dic_score, new_user, new_sim_dic):
+     score = 0;
+     denominateur = 0
+     
+     for user in dic_score:
+          score += dic_score[user]*new_sim_dic[user]
+          denominateur += abs(new_sim_dic[user])
+     
+     return score/denominateur
+
+
