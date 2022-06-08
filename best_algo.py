@@ -20,6 +20,8 @@ def create_follow(dataset):
      :return: La matrice follow avec les individus labellisés en ligne, les abonnements en colonnes.
      Chaque indice follow[i][j] = 1 si l'individu i suit la page j, 0 sinon;
      Peut-être qu'un dictionnaire sera mieux adapté
+     # Dic_score : {Pseudo : "Score"}
+     # Dic = {Abonnement : "Pseudo"}
      """
 
      Pseudos = []
@@ -29,12 +31,15 @@ def create_follow(dataset):
 
      # [A insérer, remplissage de Pseudos]
 
-
+     Dic_score ={}
+     Dic = {}
      n = len(Pseudos)
+     for i in range(n):
+          Dic_score[Pseudos[i][0]] = Pseudos[i][1]
+          for x in Pseudos[i][2]:
 
-     # Creation de la matrice follow
-     follow = np.zeros(n,n)
-     for x in range
+
+
 
 
 
