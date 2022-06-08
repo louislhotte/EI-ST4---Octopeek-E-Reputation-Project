@@ -51,6 +51,23 @@ def create_dic(Path):
                 dic[x].append(Pseudos[i][0])
 
 
+def main(dic, dic_score, unknown):
+    """
+    :param dic: {Abonnement : "Pseudo"}
+    :param dic_score: {Pseudo : "Score"}
+    :param unknown: Dictionnaire {Pseudo : "Abonnements"}
+    :return: ø
+    """
+
+    for user in unknown:
+        user_vect_sim = vect_sim(dic_score, dic, user)
+        score = score_prediction(dic_score, user, user_vect_sim)
+        if test_score_user(score) != None:
+            dic_score[user] = score
+            dic[user] = unknown[user]
+
+
+
 def test_score_user(score):
      if score < -0.6:
           return -1
@@ -85,16 +102,16 @@ def calcul_sim(dic, new_user_following, user):
      return sim/(sqrt(new_user_number)*sqrt(user_number))
 
 
-def vect_sim(dic_score, dic, new_user_following):
+def vect_sim(dic_score, dic, new_user):
      user_sim_dic = dict()
      for user in dic_score:
-          user_sim_dic[user] = calcul_sim(dic, new_user_following, user)
+          user_sim_dic[user] = calcul_sim(dic, new_user, user)
      return user_sim_dic
 
-def score_prediction(dic_score, new_sim_dic):
+def score_prediction(dic_score, new_user, new_sim_dic):
      score = 0;
      denominateur = 0
-
+     
      for user in dic_score:
           score += dic_score[user]*new_sim_dic[user]
           denominateur += abs(new_sim_dic[user])
