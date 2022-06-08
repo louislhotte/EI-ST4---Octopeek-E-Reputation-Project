@@ -14,11 +14,11 @@ with open('eggs.csv', newline='') as csvfile:
      for row in spamreader:
           Unknown.append(row)
 
-def create_Sim(dataset):
+def create_follow(dataset):
      """
      :param dataset: Dataset avec les pseudos des individus labellisés "Pro-ElonMusk" et "Anti-ElonMusk", et les abonnements associés à la clé 'pseudo'
-     :return: La matrice de similarité Sim avec les individus labellisés en ligne, les abonnements en colonnes.
-     Chaque indice Sim[i][j] = 1 si l'individu i suit la page j, 0 sinon;
+     :return: La matrice follow avec les individus labellisés en ligne, les abonnements en colonnes.
+     Chaque indice follow[i][j] = 1 si l'individu i suit la page j, 0 sinon;
      Peut-être qu'un dictionnaire sera mieux adapté
      """
 
@@ -30,20 +30,23 @@ def create_Sim(dataset):
      # [A insérer, remplissage de Pseudos]
 
 
-     # Creation de la matrice Sim
+     n = len(Pseudos)
+
+     # Creation de la matrice follow
+     follow = np.zeros(n,n)
+     for x in range
 
 
 
 
 
-
-def loop(Sim, Unkwown, Label):
+def loop(follow, Unkwown, Label):
      """
-     :Input: Matrice de similarité remplie actuellement appelée "Sim", Liste Unknown, Matrice Label des pseudos labellisés "pour",
+     :Input: Matrice utilisateurs/abonnements remplie actuellement appelée "follow", Liste Unknown, Matrice Label des pseudos labellisés "pour",
      "contre", ou "neutre" à propos d'Elon.
-     :return: Matrice de similarité agrandie (avec les fortements positif, fortements neutre,
+     :return: Matrice follow agrandie (avec les fortements positif, fortements neutre,
      fortement négatif rentrant dans la matrice), liste Unknown modifiée avec les pseudos qui sont
-     entrés dans la matrice de similarité supprimés de Unknown
+     entrés dans la matrice follow : ils sont supprimés de Unknown
      """
 
 
@@ -52,7 +55,7 @@ def loop(Sim, Unkwown, Label):
      return
 
 
-def main(Sim, Unknown, dataset):
+def main(Unknown, dataset):
      """
      :param: dataset (Dataset avec les pseudos des individus labellisés "Pro-ElonMusk" et "Anti-ElonMusk")
      Unknown (la liste des pseudos non 'classés')
@@ -61,15 +64,17 @@ def main(Sim, Unknown, dataset):
      Compteur = 0
 
      while len(Unknown) > 0 :
-          Sim = loop(Unknown)
+          follow = loop(Unknown)
           Compteur += 1
 
           # Si l'ordi n'arrive
           if Compteur > 100:
                break
 
-     # Puis une fois qu'on a la matrice de similarité, il faut classifier
-     # dic_sim = similarity(Sim)
+
+     # Puis une fois qu'on a la matrice follow finale, il faut créer la matrice de similarité
+
+
 
 
 
