@@ -9,6 +9,8 @@ Positive = []
 Negative = []
 Neutral = []
 
+
+
 with open('eggs.csv', newline='') as csvfile:
      spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
      for row in spamreader:
@@ -38,7 +40,7 @@ def create_Sim(dataset):
 
 
 
-def loop(Sim, Unkwown, Label):
+def loop(Unkwown, Label):
      """
      :Input: Matrice de similarité remplie actuellement appelée "Sim", Liste Unknown, Matrice Label des pseudos labellisés "pour",
      "contre", ou "neutre" à propos d'Elon.
@@ -53,15 +55,15 @@ def loop(Sim, Unkwown, Label):
      return
 
 
-def main(Sim, Unknown, dataset):
+def main(Unknown, dataset):
      """
      :param: dataset (Dataset avec les pseudos des individus labellisés "Pro-ElonMusk" et "Anti-ElonMusk")
      Unknown (la liste des pseudos non 'classés')
      :return: Dictionnaire ou matrice qui à chaque pseudo associe son statut 'Positif', 'Neutre' ou 'Négatif'
      """
      Compteur = 0
-
-     while len(Unknown) > 0 :
+     
+     while len(Unknown) > 0:
           Sim = loop(Unknown)
           Compteur += 1
 
