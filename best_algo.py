@@ -5,10 +5,6 @@ from math import sqrt
 
 
 Path = 'datapart14.csv'
-Unknown = []
-Positive = []
-Negative = []
-Neutral = []
 
 
 def create_dic(Path):
@@ -49,6 +45,20 @@ def create_dic(Path):
                 dic[x] = [Pseudos[i][0]]
             else:
                 dic[x].append(Pseudos[i][0])
+
+def convert_CSV_into_dic(CSV_path):
+     """
+     :param CSV_path:
+     :return: dic {Pseudo : "Abonnements"}
+     """
+     dict = {}
+     with open(Path, newline='') as csvfile:
+        read = csv.reader(csvfile)
+        for row in read:
+             pass
+
+     return dict
+
 
 
 def main(dic, dic_score, unknown):
