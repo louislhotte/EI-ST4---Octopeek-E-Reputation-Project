@@ -58,13 +58,20 @@ def main(dic, dic_score, unknown):
     :param unknown: Dictionnaire {Pseudo : "Abonnements"}
     :return: ø
     """
+    Compteur = 0
+    while len(unknown) > 0:
 
-    for user in unknown:
-        user_vect_sim = vect_sim(dic_score, dic, user)
-        score = score_prediction(dic_score, user, user_vect_sim)
-        if test_score_user(score) != None:
-            dic_score[user] = score
-            dic[user] = unknown[user]
+         for user in unknown:
+              user_vect_sim = vect_sim(dic_score, dic, user)
+              score = score_prediction(dic_score, user, user_vect_sim)
+              if test_score_user(score) != None:
+                   dic_score[user] = score
+                   dic[user] = unknown[user]
+                   unknown.pop(user)
+         Compteur += 1
+
+         if Compteur == 20:
+              break
 
 
 
