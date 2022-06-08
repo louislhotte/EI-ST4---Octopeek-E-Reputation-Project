@@ -20,6 +20,7 @@ def create_Sim(dataset):
      :return: La matrice de similarité Sim avec les individus labellisés en ligne, les abonnements en colonnes.
      Chaque indice Sim[i][j] = 1 si l'individu i suit la page j, 0 sinon
      """
+     
 
 def loop(Sim, Unkwown, Label):
      """
