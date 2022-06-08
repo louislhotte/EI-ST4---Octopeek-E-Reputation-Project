@@ -4,23 +4,23 @@ import pandas as pd
 from math import sqrt
 
 
-Path = ""
+Path = [] #Liste des paths
 Unknown = []
 Positive = []
 Negative = []
 Neutral = []
 
-with open('eggs.csv', newline='') as csvfile:
-     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-     for row in spamreader:
-          Unknown.append(row)
 
-def create_dic(dataset):
+def create_dic(Path):
      """
      :param dataset:     CSV avec pseudos, scores et abonnements (Normalement, 2 CSV différent?)
      :return:            dic_score : {Pseudo : "Score"}
                          dic = {Abonnement : "Pseudo"}
      """
+     with open('eggs.csv', newline='') as csvfile:
+          spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+          for row in spamreader:
+               Unknown.append(row)
 
      Pseudos = []
      #On va créer une liste de liste Pseudos, avec en Pseudo[i][0] = Pseudo et Pseudo[i][1] = 0, -1, 1
