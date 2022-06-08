@@ -5,6 +5,7 @@ import tweepy
 import matplotlib.pyplot as plt
 import time
 import datetime
+import pickle
 
 # Authentication Keys
 consumerKey = "rP1N2eAUuLP3zmGkTj166zwgs"
@@ -23,22 +24,30 @@ def percentage(part, whole):
      return 100 * float(part) / float(whole)
 
 
-keyword = "#Elon Musk"
+keyword = "Musk"
 noOfTweet = int(input("Please enter how many tweets to analyze: "))
 # start_date = datetime.datetime(2022, 1, 6, 12, 00, 00)
 # end_date = datetime.datetime(2022, 3, 6, 12, 00, 00)
 
 tweets = tweepy.Cursor(api.search_tweets, q=keyword, lang="en").items(noOfTweet)
 
+# i = 1
+# for tweet in tweepy.Cursor(api.search_tweets, q=keyword, lang="en").items(1000):
+#      print(i)
+#      i = i + 1
+#      print(tweet.text)
+
 k = 0
 positive = 0
 negative = 0
 neutral = 0
 polarity = 0
+list = []
 
 for tweet in tweets:
      k = k + 1
      # print(tweet.text)
+     list.append(tweet.text)
      analysis = TextBlob(tweet.text)
      polarity += analysis.sentiment.polarity
 
@@ -63,6 +72,14 @@ positive = format(positive, '.1f')
 negative = format(negative, '.1f')
 neutral = format(neutral, '.1f')
 
+#Saving the list with pickle module
+# with open("TweetsList", "wb") as fp:
+#      pickle.dump(list, fp)
+
+#To load the list you've created :
+with open("TweetsList", "rb") as fp:
+     b = pickle.load(fp)
+print(b[0])
 
 #Creating PieCart
 
