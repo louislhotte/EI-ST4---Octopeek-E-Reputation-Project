@@ -15,12 +15,11 @@ with open('eggs.csv', newline='') as csvfile:
      for row in spamreader:
           Unknown.append(row)
 
-def create_follow(dataset):
+def create_dic(dataset):
      """
-     :param dataset: Dataset avec les pseudos des individus labellisés "Pro-ElonMusk" et "Anti-ElonMusk", et les abonnements associés à la clé 'pseudo'
-     :return: La matrice follow avec les individus labellisés en ligne, les abonnements en colonnes.
-     Chaque indice follow[i][j] = 1 si l'individu i suit la page j, 0 sinon;
-     Peut-être qu'un dictionnaire sera mieux adapté
+     :param dataset:     CSV avec pseudos, scores et abonnements (Normalement, 2 CSV différent?)
+     :return:            Dic_score : {Pseudo : "Score"}
+                         Dic = {Abonnement : "Pseudo"}
      """
 
      Pseudos = []
@@ -30,12 +29,20 @@ def create_follow(dataset):
 
      # [A insérer, remplissage de Pseudos]
 
-
+     Dic_score ={}
+     Dic = {}
      n = len(Pseudos)
+     for i in range(n):
+          Dic_score[Pseudos[i][0]] = Pseudos[i][1]
+          for x in Pseudos[i][2]:
+               if x not in Dic:
+                    Dic[x] = [Pseudos[i][0]]
+               else:
+                    Dic[x].append(Pseudos[i][0])
 
-     # Creation de la matrice follow
-     follow = np.zeros(n,n)
-     for x in range
+
+
+
 
 
 
