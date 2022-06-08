@@ -45,14 +45,15 @@ def create_dic(Path):
                 dic[x] = [Pseudos[i][0]]
             else:
                 dic[x].append(Pseudos[i][0])
+    return dic_score, dic
 
-def convert_CSV_into_dic(CSV_path):
+def convert_CSV_into_unknown(CSV_path):
      """
      :param CSV_path:
      :return: dic {Pseudo : "Abonnements"}
      """
      dict = {}
-     with open(Path, newline='') as csvfile:
+     with open(CSV_path, newline='') as csvfile:
         read = csv.reader(csvfile)
         for row in read:
              pass
@@ -148,4 +149,7 @@ def score_prediction(dic_score, new_sim_dic):
      
      return score/denominateur
 
-
+Path2 = "data.csv"
+dic_score, dic = create_dic(Path)
+unknown = convert_CSV_into_unknown(Path2)
+main(dic, dic_score, unknown)
