@@ -18,8 +18,8 @@ with open('eggs.csv', newline='') as csvfile:
 def create_dic(dataset):
      """
      :param dataset:     CSV avec pseudos, scores et abonnements (Normalement, 2 CSV différent?)
-     :return:            Dic_score : {Pseudo : "Score"}
-                         Dic = {Abonnement : "Pseudo"}
+     :return:            dic_score : {Pseudo : "Score"}
+                         dic = {Abonnement : "Pseudo"}
      """
 
      Pseudos = []
@@ -29,16 +29,16 @@ def create_dic(dataset):
 
      # [A insérer, remplissage de Pseudos]
 
-     Dic_score ={}
-     Dic = {}
+     dic_score ={}
+     dic = {}
      n = len(Pseudos)
      for i in range(n):
-          Dic_score[Pseudos[i][0]] = Pseudos[i][1]
+          dic_score[Pseudos[i][0]] = Pseudos[i][1]
           for x in Pseudos[i][2]:
-               if x not in Dic:
-                    Dic[x] = [Pseudos[i][0]]
+               if x not in dic:
+                    dic[x] = [Pseudos[i][0]]
                else:
-                    Dic[x].append(Pseudos[i][0])
+                    dic[x].append(Pseudos[i][0])
 
 
 
@@ -88,13 +88,13 @@ def main(Unknown, dataset):
 
      return
 
-def calcul_sim(dic_score, user_1, user_2):
+def calcul_sim(dic, user_1, user_2):
      user_1_number = 0;
      user_2_number = 0;
 
      sim = 0;
 
-     for items in dic_score.items():
+     for items in dic.items():
           is_in_1 = user_1 in items[1];
           is_in_2 = user_2 in items[1];
           if is_in_1:
@@ -107,3 +107,5 @@ def calcul_sim(dic_score, user_1, user_2):
      
      return sim/(sqrt(user_1_number)*sqrt(user_2_number))
 
+def vect_sim(dic_score, dic, user):
+     pass
