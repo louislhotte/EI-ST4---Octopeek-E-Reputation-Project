@@ -1,6 +1,7 @@
 import csv
 import numpy as np
 import pandas as pd
+from math import sqrt
 
 
 Path = ""
@@ -75,3 +76,21 @@ def main(Sim, Unknown, dataset):
 
      return
 
+def calcul_sim(dic_score, user_1, user_2):
+     user_1_number = 0;
+     user_2_number = 0;
+
+     sim = 0;
+
+     for items in dic_score.items():
+          is_in_1 = user_1 in items[1];
+          is_in_2 = user_2 in items[1];
+          if is_in_1:
+               user_1_number += 1;
+          if is_in_2:
+               user_2_number += 1;
+          
+          if is_in_1 and is_in_2:
+               sim += 1
+     
+     return sim/(sqrt(user_1_number)*sqrt(user_2_number))
