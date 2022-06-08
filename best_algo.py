@@ -99,3 +99,4 @@ def calcul_sim(dic_score, user_1, user_2):
                sim += 1
      
      return sim/(sqrt(user_1_number)*sqrt(user_2_number))
+
