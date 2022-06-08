@@ -52,14 +52,14 @@ def create_dic(Path):
 
 
 def main(dic, dic_score, unknown):
-    """
-    :param dic: {Abonnement : "Pseudo"}
-    :param dic_score: {Pseudo : "Score"}
-    :param unknown: Dictionnaire {Pseudo : "Abonnements"}
-    :return: ø
-    """
-    Compteur = 0
-    while len(unknown) > 0:
+     """
+     :param dic: {Abonnement : "Pseudo"}
+     :param dic_score: {Pseudo : "Score"}
+     :param unknown: Dictionnaire {Pseudo : "Abonnements"}
+     :return: ø
+     """
+     Compteur = 0
+     while len(unknown) > 0:
 
          for user in unknown:
               user_vect_sim = vect_sim(dic_score, dic, user)
@@ -73,7 +73,20 @@ def main(dic, dic_score, unknown):
          if Compteur == 20:
               break
 
+     with open('dic_score.csv', 'w') as csvfile:
+          writer = csv.DictWriter(csvfile, fieldnames=[key for key in dic_score])
+          writer.writeheader()
+          writer.writerows([dic_score])
+     
+     with open('dic.csv', 'w') as csvfile:
+          writer = csv.DictWriter(csvfile, fieldnames=[key for key in dic])
+          writer.writeheader()
+          writer.writerows([dic])
 
+     with open('unknown.csv', 'w') as csvfile:
+          writer = csv.DictWriter(csvfile, fieldnames=[key for key in unknown])
+          writer.writeheader()
+          writer.writerows([unknown])
 
 def test_score_user(score):
      if score < -0.6:
