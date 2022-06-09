@@ -60,7 +60,11 @@ def convert_CSV_into_unknown(CSV_path):
 
      return dict
 
-
+def convert_dic_into_CSV(dic, name):
+     with open(name+'csv', 'w') as csvfile:
+          writer = csv.DictWriter(csvfile, fieldnames=[key for key in dic])
+          writer.writeheader()
+          writer.writerows([dic])
 
 def main(dic, dic_score, unknown):
      """
@@ -83,21 +87,10 @@ def main(dic, dic_score, unknown):
 
          if Compteur == 20:
               break
-
-     with open('dic_score.csv', 'w') as csvfile:
-          writer = csv.DictWriter(csvfile, fieldnames=[key for key in dic_score])
-          writer.writeheader()
-          writer.writerows([dic_score])
      
-     with open('dic.csv', 'w') as csvfile:
-          writer = csv.DictWriter(csvfile, fieldnames=[key for key in dic])
-          writer.writeheader()
-          writer.writerows([dic])
-
-     with open('unknown.csv', 'w') as csvfile:
-          writer = csv.DictWriter(csvfile, fieldnames=[key for key in unknown])
-          writer.writeheader()
-          writer.writerows([unknown])
+     convert_dic_into_CSV(dic_score, 'dic_score')
+     convert_dic_into_CSV(dic, 'dic')
+     convert_dic_into_CSV(unknown, 'unknown')
 
 def test_score_user(score):
      if score < -0.6:
@@ -152,4 +145,4 @@ def score_prediction(dic_score, new_sim_dic):
 Path2 = "data.csv"
 dic_score, dic = create_dic(Path)
 unknown = convert_CSV_into_unknown(Path2)
-main(dic, dic_score, unknown)
+#main(dic, dic_score, unknown)
