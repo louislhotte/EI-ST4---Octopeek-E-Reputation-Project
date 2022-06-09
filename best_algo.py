@@ -73,6 +73,12 @@ def convert_CSV_into_unknown(CSV_path):
 
      return dict
 
+def convert_dic_into_CSV(dic, name):
+     with open(name+'csv', 'w') as csvfile:
+          writer = csv.DictWriter(csvfile, fieldnames=[key for key in dic])
+          writer.writeheader()
+          writer.writerows([dic])
+
 
 def main(dic, dic_score, unknown):
      """
@@ -101,10 +107,9 @@ def main(dic, dic_score, unknown):
           writer.writeheader()
           writer.writerows([dic_score])
      
-     with open('dic.csv', 'w') as csvfile:
-          writer = csv.DictWriter(csvfile, fieldnames=[key for key in dic])
-          writer.writeheader()
-          writer.writerows([dic])
+     convert_dic_into_CSV(dic_score, 'dic_score')
+     convert_dic_into_CSV(dic, 'dic')
+     convert_dic_into_CSV(unknown, 'unknown')
 
      with open('unknown.csv', 'w') as csvfile:
           writer = csv.DictWriter(csvfile, fieldnames=[key for key in unknown])
