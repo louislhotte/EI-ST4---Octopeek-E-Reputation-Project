@@ -86,6 +86,7 @@ def convert_dic_into_CSV(dic, name):
 
 
 def main(dic, dic_score, unknown):
+<<<<<<< HEAD
     """
     :param dic: {Abonnement : "Pseudo"}
     :param dic_score: {Pseudo : "Score"}
@@ -112,6 +113,32 @@ def main(dic, dic_score, unknown):
     convert_dic_into_CSV(dic, 'dic')
     convert_dic_into_CSV(unknown, 'unknown')
 
+=======
+     """
+     :param dic: {Abonnement : "Pseudo"}
+     :param dic_score: {Pseudo : "Score"}
+     :param unknown: Dictionnaire {Pseudo : "Abonnements"}
+     :return: ø
+     """
+
+     while len(unknown) > 0:
+         unknown2 = deepcopy(unknown)
+         for user in unknown2:
+              new_user_following = unknown2[user]
+              user_vect_sim = vect_sim(dic_score, dic, new_user_following)
+              score = score_prediction(dic_score, user_vect_sim)
+              if test_score_user(score) != None:
+                   add_user(dic_score, dic, user, new_user_following, score)
+                   unknown.pop(user)
+                   print(len(unknown))
+                   print("A bas VSCODE...Vive Pycharm")
+         if len(unknown) == len(unknown2):
+              break
+
+     convert_dic_into_CSV(dic_score, 'dic_score')
+     convert_dic_into_CSV(dic, 'dic')
+     convert_dic_into_CSV(unknown, 'unknown')
+>>>>>>> 702875cf2e174769a42644cb41596bccd9e2ad0d
 
 def test_score_user(score):
     if score == None:
