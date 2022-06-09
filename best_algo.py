@@ -56,9 +56,16 @@ def convert_CSV_into_unknown(CSV_path):
      with open(CSV_path, newline='') as csvfile:
         read = csv.reader(csvfile)
         for row in read:
-             pass
+             if row != []:
+                  pseudo = int(row[0])
+                  list = row[1][1:].split(', ')
+                  n = len(list)
+                  for i in range(len(list) - 1):
+                       list[i] = int(list[i])
+                  dict[pseudo] = list
 
      return dict
+
 
 
 
