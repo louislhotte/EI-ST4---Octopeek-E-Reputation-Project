@@ -152,4 +152,4 @@ def score_prediction(dic_score, new_sim_dic):
 Path2 = "data.csv"
 dic_score, dic = create_dic(Path)
 unknown = convert_CSV_into_unknown(Path2)
-#main(dic, dic_score, unknown)
+main(dic, dic_score, unknown)
