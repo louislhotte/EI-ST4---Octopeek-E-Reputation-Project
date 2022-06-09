@@ -1,3 +1,4 @@
+from copy import deepcopy
 import csv
 import numpy as np
 import pandas as pd
@@ -90,9 +91,9 @@ def main(dic, dic_score, unknown):
      """
      Compteur = 0
      while len(unknown) > 0:
-
-         for user in unknown:
-              new_user_following = unknown[user]
+         unknown2 = deepcopy(unknown)
+         for user in unknown2:
+              new_user_following = unknown2[user]
               user_vect_sim = vect_sim(dic_score, dic, new_user_following)
               score = score_prediction(dic_score, user_vect_sim)
               if test_score_user(score) != None:
