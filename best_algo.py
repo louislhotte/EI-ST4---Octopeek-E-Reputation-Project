@@ -94,7 +94,7 @@ def main(dic, dic_score, unknown):
          for user in unknown:
               new_user_following = unknown[user]
               user_vect_sim = vect_sim(dic_score, dic, new_user_following)
-              score = score_prediction(dic_score, user, user_vect_sim)
+              score = score_prediction(dic_score, user_vect_sim)
               if test_score_user(score) != None:
                    add_user(dic_score, dic, user, new_user_following, score)
                    unknown.pop(user)
