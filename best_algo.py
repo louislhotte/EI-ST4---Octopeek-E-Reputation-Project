@@ -108,6 +108,8 @@ def main(dic, dic_score, unknown):
      convert_dic_into_CSV(unknown, 'unknown')
 
 def test_score_user(score):
+     if score == None:
+          return None
      if score < -0.6:
           return -1
      elif score > 0.6:
@@ -156,7 +158,10 @@ def score_prediction(dic_score, new_sim_dic):
           score += dic_score[user]*new_sim_dic[user]
           denominateur += abs(new_sim_dic[user])
      
-     return score/denominateur
+     if denominateur != 0:
+          return score/denominateur
+     else:
+          return None
 
 Path2 = "randomusers.csv"
 dic_score, dic = create_dic(Path)
