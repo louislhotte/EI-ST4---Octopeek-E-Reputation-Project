@@ -122,7 +122,10 @@ def test_score_user(score):
 def add_user(dic_score, dic, new_user, new_user_following, score):
      dic_score[new_user] = score
      for following in new_user_following:
-          dic[following].append(new_user)
+          if following not in dic:
+               dic[following] = [new_user]
+          else:
+               dic[following].append(new_user)
 
 def calcul_sim(dic, new_user_following, user):
      new_user_number = 0
