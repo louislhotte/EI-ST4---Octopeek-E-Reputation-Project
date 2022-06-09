@@ -112,11 +112,6 @@ def main(dic, dic_score, unknown):
      convert_dic_into_CSV(dic, 'dic')
      convert_dic_into_CSV(unknown, 'unknown')
 
-     with open('unknown.csv', 'w') as csvfile:
-          writer = csv.DictWriter(csvfile, fieldnames=[key for key in unknown])
-          writer.writeheader()
-          writer.writerows([unknown])
-
 def test_score_user(score):
      if score < -0.6:
           return -1
