@@ -105,7 +105,7 @@ def main(dic, dic_score, unknown):
                    unknown.pop(user)
                    print(len(unknown))
                    print("A bas VSCODE...Vive Pycharm")
-         if len(unknown) == len(unknown):
+         if len(unknown) == len(unknown2):
               break
 
      convert_dic_into_CSV(dic_score, 'dic_score')
