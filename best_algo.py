@@ -92,22 +92,16 @@ def main(dic, dic_score, unknown):
      while len(unknown) > 0:
 
          for user in unknown:
-              user_vect_sim = vect_sim(dic_score, dic, user)
+              new_user_following = unknown[user]
+              user_vect_sim = vect_sim(dic_score, dic, new_user_following)
               score = score_prediction(dic_score, user, user_vect_sim)
               if test_score_user(score) != None:
-                   dic_score[user] = score
-                   dic[user] = unknown[user]
-                   unknown.pop(user)
+                   add_user(dic_score, dic, user, new_user_following, score)
          Compteur += 1
 
          if Compteur == 20:
               break
 
-     with open('dic_score.csv', 'w') as csvfile:
-          writer = csv.DictWriter(csvfile, fieldnames=[key for key in dic_score])
-          writer.writeheader()
-          writer.writerows([dic_score])
-     
      convert_dic_into_CSV(dic_score, 'dic_score')
      convert_dic_into_CSV(dic, 'dic')
      convert_dic_into_CSV(unknown, 'unknown')
@@ -146,10 +140,10 @@ def calcul_sim(dic, new_user_following, user):
      return sim/(sqrt(new_user_number)*sqrt(user_number))
 
 
-def vect_sim(dic_score, dic, new_user):
+def vect_sim(dic_score, dic, new_user_following):
      user_sim_dic = dict()
      for user in dic_score:
-          user_sim_dic[user] = calcul_sim(dic, new_user, user)
+          user_sim_dic[user] = calcul_sim(dic, new_user_following, user)
      return user_sim_dic
 
 def score_prediction(dic_score, new_sim_dic):

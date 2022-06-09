@@ -9,9 +9,10 @@ dic_score = {
 fieldname = []
 
 for key in dic_score:
-    fieldname.append(key)
-
+    print(key)
+"""
 with open('test.csv', 'w') as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=fieldname)
     writer.writeheader()
     writer.writerows([dic_score])
+"""
