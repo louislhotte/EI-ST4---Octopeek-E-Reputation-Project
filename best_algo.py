@@ -5,7 +5,7 @@ import pandas as pd
 from math import sqrt
 
 
-Path = 'datapart14.csv'
+Path = 'datatotal.csv'
 
 
 def create_dic(Path):
@@ -25,7 +25,10 @@ def create_dic(Path):
                 for i in range(len(list) - 1):
                     list[i] = int(list[i])
                 last_follower = int(list[n - 1].split(']')[0])
-                score = list[0]
+                if type(list[0]) == int:
+                     score = list[0]
+                else:
+                     score = int(list[0].split(']')[0])
                 followers = list[1:n - 2]
                 followers.append(last_follower)
                 Pseudos.append([pseudo, score, followers])
@@ -43,9 +46,10 @@ def create_dic(Path):
         dic_score[Pseudos[i][0]] = Pseudos[i][1]
         for x in Pseudos[i][2]:
             if x not in dic:
-                dic[x] = [Pseudos[i][0]]
+                dic[x] = [int(Pseudos[i][0])]
             else:
-                dic[x].append(Pseudos[i][0])
+                dic[x].append(int(Pseudos[i][0]))
+
     return dic_score, dic
 
 
@@ -89,7 +93,7 @@ def main(dic, dic_score, unknown):
      :param unknown: Dictionnaire {Pseudo : "Abonnements"}
      :return: ø
      """
-     Compteur = 0
+
      while len(unknown) > 0:
          unknown2 = deepcopy(unknown)
          for user in unknown2:
@@ -99,9 +103,9 @@ def main(dic, dic_score, unknown):
               if test_score_user(score) != None:
                    add_user(dic_score, dic, user, new_user_following, score)
                    unknown.pop(user)
-         Compteur += 1
-
-         if Compteur == 20:
+                   print(len(unknown))
+                   print("A bas VSCODE...Vive Pycharm")
+         if len(unknown) == len(unknown):
               break
 
      convert_dic_into_CSV(dic_score, 'dic_score')
@@ -144,8 +148,11 @@ def calcul_sim(dic, new_user_following, user):
      for items in dic.items():
           if user in items[1]:
                user_number += 1
-
-     return sim/(sqrt(new_user_number)*sqrt(user_number))
+     a = sqrt(new_user_number)*sqrt(user_number)
+     if a == 0:
+          return 0
+     else:
+          return sim/(sqrt(new_user_number)*sqrt(user_number))
 
 
 def vect_sim(dic_score, dic, new_user_following):
@@ -155,9 +162,9 @@ def vect_sim(dic_score, dic, new_user_following):
      return user_sim_dic
 
 def score_prediction(dic_score, new_sim_dic):
-     score = 0;
+     score = 0
      denominateur = 0
-     
+
      for user in dic_score:
           score += dic_score[user]*new_sim_dic[user]
           denominateur += abs(new_sim_dic[user])
