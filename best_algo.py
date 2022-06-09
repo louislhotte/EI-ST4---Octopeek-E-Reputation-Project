@@ -130,8 +130,9 @@ def calcul_sim(dic, new_user_following, user):
 
      for following in new_user_following:
           new_user_number += 1
-          if user in dic[following]:
-               sim += 1
+          if following in dic:
+               if user in dic[following]:
+                    sim += 1
 
      
      for items in dic.items():
