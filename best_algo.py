@@ -67,7 +67,7 @@ def convert_CSV_into_unknown(CSV_path):
                     last_follower = int(list[n - 1].split(']')[0])
                     followers = list[1:n - 2]
                     followers.append(last_follower)
-                    print(followers)
+
 
                     dict[pseudo] = followers
 
@@ -96,7 +96,8 @@ def main(dic, dic_score, unknown):
               score = score_prediction(dic_score, user, user_vect_sim)
               if test_score_user(score) != None:
                    dic_score[user] = score
-                   dic[user] = unknown[user]
+                   for abonnement in unknown[user]:
+                        dic[abonnement] = dic[user]
                    unknown.pop(user)
          Compteur += 1
 
@@ -167,7 +168,7 @@ def score_prediction(dic_score, new_sim_dic):
      
      return score/denominateur
 
-Path2 = "data.csv"
+Path2 = "randomusers.csv"
 dic_score, dic = create_dic(Path)
 unknown = convert_CSV_into_unknown(Path2)
 main(dic, dic_score, unknown)
